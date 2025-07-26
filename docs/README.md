@@ -7,6 +7,10 @@ This is a simple website to help learn the fundamentals of ASP.NET Core MVC (Mod
 Core
 - Styling with Bootstrap *
 - Shopping Cart 
+## Screenshots/Images
+<img src=MilkmanCow.png alt="Milkman's Milk" width="600" height="400">
+Milkman's Milk Logo Image -<br>
+"Merlin the Milk Man"
 
 # Installation 
 1. Clone or download the repository.
