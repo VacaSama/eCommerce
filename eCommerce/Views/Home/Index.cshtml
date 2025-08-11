@@ -2,15 +2,71 @@
     ViewData["Title"] = "Home Page";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    </div>
-
-<div class="alert alert-info" role="alert">
-    <strong>This website is under construction!</strong> 
-    
+<div class="welcome-title">
+    <h1 class="display-4 text-center">Explore our Products &#128004</h1>
 </div>
 
-<div> 
+<!-- Carousel Setup Below-->
+<div id="carouselExampleCaptions" class="carousel slide container-fluid">
+        <div class="carousel-indicators">
+            <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+            <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1" aria-label="Slide 2"></button>
+            <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2" aria-label="Slide 3"></button>
+        </div>
+
+        <div class="carousel-inner">
+            <!--Original Milk Carousel-->
+            <div class="carousel-item active">
+            <img src="~/images/MartinCow.png" class="d-block banner-img" alt="MartinCow">
+            <div class="carousel-caption d-inline">
+                    <h5>Martin's Classic 12oz</h5>
+                    <p>
+                     Pure nostalgia in every sip—creamy, fresh milk delivered by your favorite bovine in uniform.
+                    </p>
+                </div>
+            </div>
+            <!--Berry Pie Milk Carousel-->
+            <div class="carousel-item">
+            <img src="~/images/BerryPieMartin.png" class="d-block banner-img" alt="BerryPie">
+                <div class="carousel-caption d-none d-md-block ">
+                    <h5>Aunt May's Berry-Pie Spring Special 12oz</h5>
+                    <p>
+                     A berry-fresh fusion of cream and pie filling—sweet, fruity, and moo-velously smooth.
+                     Think summer picnics and grandma’s pie, now in milk form with a delicious twist.
+                    </p>
+                </div>
+            </div>
+            <!--Chocolate Milk Carousel-->
+            <div class="carousel-item">
+            <img src="~/images/ChocolateMartin.png" class="d-block banner-img" alt="ChocoChubbs">
+                <div class="carousel-caption d-none d-md-block">
+                    <h5>Little Chubbs' Chocolate Delight 12oz</h5>
+                    <p>Chocolate lovers... 
+                        and Chubbs rejoice—this dreamy blend is handcrafted for moo-gical satisfaction..</p>
+                </div>
+            </div>
+        </div>
+
+        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+        </button>
+    </div>
+
+
+<!-- Red Alert below -->
+<div class="alert alert-danger text-center" role="alert">
+    <strong class="text-center">This website is under construction! &#128004</strong>
+    <p>
+        This is a sample eCommerce website built with ASP.NET Core MVC.
+        It is designed to demonstrate the basic structure and functionality of an online store.<br />  
+        You can explore the site, but please note that some features may not be fully implemented yet.<br />
+        Feel free to check back later for updates!
+    </p>
+
 </div>
 

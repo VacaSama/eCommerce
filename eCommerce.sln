@@ -7,7 +7,12 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "eCommerce", "eCommerce\eCom
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{8EC462FD-D22E-90A8-E5CE-7E832BA40C5D}"
 	ProjectSection(SolutionItems) = preProject
+		docs\BerryPieMartin.png = docs\BerryPieMartin.png
+		docs\ChocolateMartin.png = docs\ChocolateMartin.png
+		docs\MartinCow.png = docs\MartinCow.png
+		docs\MilkmanCow.png = docs\MilkmanCow.png
 		docs\README.md = docs\README.md
+		docs\TreeFarms.png = docs\TreeFarms.png
 	EndProjectSection
 EndProject
 Global
