@@ -69,8 +69,14 @@ body {
     right: 200px;
 }
 
-.logo{ 
+.logo { 
     max-width: 10%;  
 }
+
+.product-cards {
+    padding: 10px 10px 10px 10px;
+
+}
+
 
 
