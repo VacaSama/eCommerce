@@ -11,7 +11,7 @@ Core
 <img src=MilkmanCow.png alt="Milkman's Milk" width="250" height="350">
 
 Milkman Farms Mascot<br>
-"Merlin the Milk Man"
+"Martin the Milk Man"
 
 # Installation 
 1. Clone or download the repository.
