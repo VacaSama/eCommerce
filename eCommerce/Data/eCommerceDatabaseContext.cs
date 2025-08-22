@@ -1,4 +1,5 @@
 ﻿using System.Security.Cryptography.X509Certificates;
+using Microsoft.Data.SqlClient;
 
 namespace eCommerce.Data;
 
@@ -11,5 +12,15 @@ public class eCommerceDatabaseContext
     {
         // Initialize the database context here
         // This could include setting up a connection string, configuring options, etc.
+        using (var connection = new SqlConnection(connectionString))
+        {
+            // open the connection to the database 
+            connection.Open();
+            // You can perform database operations here,
+            // such as checking if the connection is successful
+
+
+            // use a try -catch block to handle any exceptions that may occur?
+        }
     }
 }
