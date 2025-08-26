@@ -19,8 +19,7 @@ public class eCommerceDatabaseContext
             // You can perform database operations here,
             // such as checking if the connection is successful
 
-
-            // use a try -catch block to handle any exceptions that may occur?
+            
         }
     }
 }
