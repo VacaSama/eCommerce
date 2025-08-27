@@ -1,4 +1,5 @@
 ﻿using eCommerce.Data;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Mvc;
 
 namespace eCommerce.Controllers
