@@ -1,15 +1,18 @@
 ﻿using System.Security.Cryptography.X509Certificates;
+using eCommerce.Models;
+using Microsoft.Data.SqlClient;
+using Microsoft.EntityFrameworkCore;
 
 namespace eCommerce.Data;
 
-public class eCommerceDatabaseContext
+public class eCommerceDatabaseContext : DbContext
 {
-    // connection string for the database 
-    public string connectionString = "Data Source=localhost;Initial Catalog=MilkmanFarmsDB;Integrated Security=True;Connect Timeout=30;Encrypt=False;Trust Server Certificate=True;Application Intent=ReadWrite;Multi Subnet Failover=False";
+    public DbSet<Product> Products { get; set; }
+    public DbSet<Customer> Customers { get; set; }
 
-    public eCommerceDatabaseContext()
-    {
-        // Initialize the database context here
-        // This could include setting up a connection string, configuring options, etc.
-    }
+    public eCommerceDatabaseContext(DbContextOptions options) : base(options)
+    { }
+        // intentionally left blank
+
+        // need to retrieve the products from the database
 }
