@@ -23,12 +23,6 @@ public class CartController : Controller
         return View(allProducts);
     }
 
-
-    public IActionResult Calculate()
-    {
-        return View();
-    }
-
     /// <summary>
     /// This action will allow the user to add something to their cart 
     /// and pushes the product id to the cart 
