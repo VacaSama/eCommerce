@@ -1,27 +1,56 @@
-﻿using eCommerce.Data;
-using Microsoft.EntityFrameworkCore;
+﻿using Azure.Core;
+using eCommerce.Data;
+using eCommerce.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
-namespace eCommerce.Controllers
+namespace eCommerce.Controllers;
+
+public class CartController : Controller
 {
-    public class CartController : Controller
+    private readonly eCommerceDatabaseContext _context;
+
+    //// constructor 
+    public CartController(eCommerceDatabaseContext context)
     {
-        //private readonly eCommerceDatabaseContext _context;
+        _context = context;
+    }
 
-        //// constructor 
-        //public CartController(eCommerceDatabaseContext context)
-        //{
-        //    _context = context;
-        //}
+    public async Task<IActionResult> Index()
+    {
+        List<Product> allProducts = await _context.Products.ToListAsync();
 
-        //public IActionResult Add(int id)
-        //{
-        //    var product = _context.Products.FirstOrDefault(x => x.Id == id);
-        //}
+        return View(allProducts);
+    }
 
-        public IActionResult Index()
-        {
-            return View();
-        }
+
+    public IActionResult Calculate()
+    {
+        return View();
+    }
+
+    /// <summary>
+    /// This action will allow the user to add something to their cart 
+    /// and pushes the product id to the cart 
+    /// </summary>
+    /// <param name="id"></param>
+    /// <returns></returns>
+    [HttpPost]
+    public IActionResult AddCart(int id)
+    {
+        return View();
+    }
+
+
+    /// <summary>
+    /// This action/method will allow the user to remove something from their 
+    /// cart. If the cart is empty a message will appear.
+    /// </summary>
+    /// <returns></returns>
+    [HttpDelete]
+
+    public IActionResult RemoveCart()
+    {
+        return View();
     }
 }

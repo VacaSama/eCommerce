@@ -1,12 +1,22 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using eCommerce.Data;
+using eCommerce.Models;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
-namespace eCommerce.Controllers
+namespace eCommerce.Controllers;
+
+public class ProductController : Controller
 {
-    public class ProductController : Controller
+    private readonly eCommerceDatabaseContext _context;
+
+    public ProductController(eCommerceDatabaseContext context)
     {
-        public IActionResult Index()
-        {
-            return View();
-        }
+        _context = context;
+    }
+    public async Task<IActionResult> Index()
+    {
+        List<Product> allProducts = await _context.Products.ToListAsync();
+
+        return View(allProducts);
     }
 }
