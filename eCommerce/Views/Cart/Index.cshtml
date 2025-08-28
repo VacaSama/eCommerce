@@ -1,14 +1,13 @@
-﻿
+﻿@model IEnumerable<Product>
 
-@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
 @{
     ViewData["Title"] = "Cart";
-	// ADD TO CART FUNCTIONALITY ~~ 
+	// ADD TO CART VIEW ~~ 
 }
 
-<div class="card">
+
+<!--divder-->
+<div class="card" id="cart-card">
     <div class="row">
         <div class="col-md-8 cart">
             <div class="title">
@@ -17,69 +16,88 @@
                     <div class="col align-self-center text-right text-muted">3 items</div>
                 </div>
             </div>
-            <div class="row border-top border-bottom">
+
+            <!--divder classic milk row-->
+            <div class="row border-top border-bottom" id="">
                 <div class="row main align-items-center">
                     <div class="col-2"><img class="img-fluid" src="/images/MartinCow.png"></div>
                     <div class="col">
-                        <div class="row text-muted">Dairy Product</div>
-                        <div class="row">Martin's Classic Milk</div>
-                        <!--HERE IS WHERE PRODUCT ID WILL GO FROM THE DATABASE-->
+                        <div class="row text-muted">@Html.DisplayFor(p => p.First().Category)</div>
+                        <div class="row">@Html.DisplayFor(p => p.First().Name)</div>
+                        <div class="row"> ProductID: @Html.DisplayFor(p => p.First().ProductId)</div>
                     </div>
                     <div class="col">
                         <a href="#">-</a><a href="#" class="border">1</a><a href="#">+</a>
                     </div>
-                    <div class="col">&euro; 44.00 <span class="close">&#10005;</span></div>
+                    <!--keep the dollar sign in front of the Price-->
+                    <div class="col"> $@Html.DisplayFor(p => p.First().Price) <span class="close">&#10005;</span></div>
                 </div>
             </div>
-            <div class="row">
-                <div class="row main align-items-center">
-                    <div class="col-2"><img class="img-fluid" src="/images/ChocolateMartin.png"></div>
-                    <div class="col">
-                        <div class="row text-muted">Dairy Product</div>
-                        <div class="row">Chubs Chocolate</div>
-                        <!--HERE IS WHERE PRODUCT ID WILL GO FROM THE DATABASE-->
-                    </div>
-                    <div class="col">
-                        <a href="#">-</a><a href="#" class="border">1</a><a href="#">+</a>
-                    </div>
-                    <div class="col">&euro; 44.00 <span class="close">&#10005;</span></div>
-                </div>
-            </div>
+
+            <!--divder berry pie row-->
             <div class="row border-top border-bottom">
                 <div class="row main align-items-center">
                     <div class="col-2"><img class="img-fluid" src="/images/BerryPieMartin.png"></div>
                     <div class="col">
-                        <div class="row text-muted">Dairy Product</div>
-                        <div class="row">BerryPie Spring Special</div>
+                        <div class="row text-muted">@Html.DisplayFor(p => p.ElementAt(1).Category)</div>
+                        <div class="row">@Html.DisplayFor(p => p.ElementAt(1).Name)</div>
+                        <div class="row"> ProductID: @Html.DisplayFor(p => p.ElementAt(1).ProductId)</div>
+                    </div>
+                    <div class="col">
+                        <a href="#">-</a><a href="#" class="border">1</a><a href="#">+</a>
+                    </div>
+                    <div class="col">$@Html.DisplayFor(p => p.ElementAt(1).Price) <span class="close">&#10005;</span></div>
+                </div>
+            </div>
+
+            <!--divder  chocolate row -->
+            <div class="row">
+                <div class="row main align-items-center">
+                    <div class="col-2"><img class="img-fluid" src="/images/ChocolateMartin.png"></div>
+                    <div class="col">
+                        <div class="row text-muted">@Html.DisplayFor(p => p.ElementAt(2).Category)</div>
+                        <div class="row">@Html.DisplayFor(p => p.ElementAt(2).Name)</div>
+                        <div class="row"> ProductID: @Html.DisplayFor(p => p.ElementAt(2).ProductId)</div>
                         <!--HERE IS WHERE PRODUCT ID WILL GO FROM THE DATABASE-->
                     </div>
                     <div class="col">
                         <a href="#">-</a><a href="#" class="border">1</a><a href="#">+</a>
                     </div>
-                    <div class="col">&euro; 44.00 <span class="close">&#10005;</span></div>
+                    <div class="col">$@Html.DisplayFor(p => p.ElementAt(2).Price) <span class="close">&#10005;</span></div>
                 </div>
             </div>
-            <div class="back-to-shop"><a href="#">&leftarrow;</a><span class="text-muted">Back to shop</span></div>
+
+
+    <!-- CHECKOUT SUMMARY -->
+            <!--divder back button/href-->
+            <div class="back-to-shop"><a href="#">&leftarrow;</a><span class="text-muted">Back</span></div>
         </div>
         <div class="col-md-4 summary">
             <div><h5><b>Summary</b></h5></div>
             <hr>
             <div class="row">
+                <!--figure out how to tinker with quantity-->
                 <div class="col" style="padding-left:0;">ITEMS 3</div>
-                <div class="col text-right">&euro; 132.00</div>
+                <div class="col text-right">place holder subtotal $23.47</div>
             </div>
+
+            <!--divder shipping/discount-->
             <form>
                 <p>SHIPPING</p>
-                <select><option class="text-muted">Standard-Delivery- &;5.00</option></select>
+                <select><option class="text-muted">Standard-Delivery- $3.00</option></select>
                 <p>DISCOUNT CODE</p>
                 <input id="code" placeholder="Enter your code">
             </form>
-            <div class="row" style="border-top: 1px solid rgba(0,0,0,.1); padding: 2vh 0;">
+            <!--divder total cost-->
+
+            <div class="row" id="" style="border-top: 1px solid rgba(0,0,0,.1); padding: 2vh 0;">
                 <div class="col">TOTAL PRICE</div>
-                <div class="col text-right">&euro; 137.00</div>
+                <!--below is the full total with the standard shipping cost included as a placeholder-->
+                <div class="col text-right">place holder full-total $26.47</div>
             </div>
-            <button class="btn">CHECKOUT</button>
+
+            <!--divder checkout button-->
+            <button class="btn" id="checkout-button">CHECKOUT</button>
         </div>
     </div>
-
 </div>

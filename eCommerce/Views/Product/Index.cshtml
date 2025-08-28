@@ -4,6 +4,7 @@
 	ViewData["Title"] = "Products";
 	// PRODUCT INDEX PAGE
 }
+
 <!-- Straight in to HTML -->
 <div class="main-product-page">
 	<h2 class="text-center">Our Products</h2>
@@ -20,11 +21,13 @@
 					fresh milk delivered by your favorite bovine in uniform. Martin's Classic- The Original Milk.</p>
 			<p class="card-text"> Price: $@Html.DisplayFor(p => p.First().Price)</p>
 			<p class="card-text">Category: @Html.DisplayFor(p => p.First().Category)</p>
+
+			<!--add to cart button-->
 			<a href="#" class="btn btn-primary">Add to Cart</a>
 		</div>
 	</div>
 
-	<!--Card 2 - Berry Pie Milk          update-database in migrations  --> 
+	<!--Card 2 - Berry Pie Milk --> 
 	<div class="card" style="width: 18rem;" >
 		<img src="/images/BerryPieMartin.png" class="card-img-top" alt="...">
 		<div class="card-body">
@@ -35,7 +38,7 @@
 			<p class="card-text">Price: $@Html.DisplayFor(p => p.ElementAt(1).Price)</p>
 			<p class="card-text">Category: @Html.DisplayFor(p => p.ElementAt(1).Category)</p>
 
-
+			<!--add to cart button-->
 			<a href="#" class="btn btn-primary">Add to Cart</a>
 		</div>
 	</div>
@@ -44,13 +47,14 @@
 	<div class="card " style="width: 18rem;">
 		<img src="/images/ChocolateMartin.png" class="card-img-top" alt="...">
 		<div class="card-body">
-			<h5 class="card-title">Little Chubbs' Chocolate Delight</h5>
+			<h5 class="card-title">@Html.DisplayFor(p => p.ElementAt(2).Name)</h5>
 				<p class="card-text">Chocolate lovers... and Chubbs rejoice—this dreamy blend
 					is handcrafted for moo-gical satisfaction..</p>
-			<p class="card-text">Placeholer Price: $7.49</p>
+			<p class="card-text">Price: $@Html.DisplayFor(p => p.ElementAt(2).Price)</p>
+			<p class="card-text">Category: @Html.DisplayFor(p => p.ElementAt(2).Category)</p>
 
+			<!--add to cart button-->
 			<a href="#" class="btn btn-primary">Add to Cart</a>
 		</div>
 	</div>
-
 </div>

@@ -1,7 +1,8 @@
-﻿using eCommerce.Data;
-using Microsoft.EntityFrameworkCore;
+﻿using Azure.Core;
+using eCommerce.Data;
+using eCommerce.Models;
 using Microsoft.AspNetCore.Mvc;
-using Azure.Core;
+using Microsoft.EntityFrameworkCore;
 
 namespace eCommerce.Controllers;
 
@@ -15,11 +16,18 @@ public class CartController : Controller
         _context = context;
     }
 
-    public IActionResult Index()
+    public async Task<IActionResult> Index()
+    {
+        List<Product> allProducts = await _context.Products.ToListAsync();
+
+        return View(allProducts);
+    }
+
+
+    public IActionResult Calculate()
     {
         return View();
     }
-
 
     /// <summary>
     /// This action will allow the user to add something to their cart 
