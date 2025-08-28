@@ -33,10 +33,9 @@ public class CartController : Controller
     /// This action will allow the user to add something to their cart 
     /// and pushes the product id to the cart 
     /// </summary>
-    /// <param name="id"></param>
     /// <returns></returns>
     [HttpPost]
-    public IActionResult AddCart(int id)
+    public IActionResult AddCart()
     {
         return View();
     }
