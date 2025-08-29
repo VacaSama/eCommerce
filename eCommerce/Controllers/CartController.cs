@@ -3,7 +3,7 @@ using eCommerce.Data;
 using eCommerce.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-
+using Microsoft.EntityFrameworkCore.Metadata.Internal;
 namespace eCommerce.Controllers;
 
 public class CartController : Controller
@@ -16,48 +16,51 @@ public class CartController : Controller
         _context = context;
     }
 
-    public async Task<IActionResult> Index()
+    public IActionResult Index()
     {
-        var cartItems = await _context.CartItems
-                        .Include(ci => ci.Product)
-                        .ToListAsync();
-        return View(cartItems);
+        var cart = TempData["Cart"] as List<CartItem> ?? new List<CartItem>();
+        TempData.Keep("Cart");
+
+        decimal subtotal = cart.Sum(item => item.Price * item.Quantity);
+        decimal shipping = 3.00m; // or use dropdown logic
+        decimal total = subtotal + shipping;
+
+        ViewBag.Subtotal = subtotal;
+        ViewBag.Shipping = shipping;
+        ViewBag.Total = total;
+
+        return View(cart);
     }
 
-
-
-    [HttpPost]
-    public async Task<IActionResult> AddCart(int productId)
+    public IActionResult AddCart(int productId)
     {
-        var product = await _context.Products.FindAsync(productId);
-        if (product == null)
-        {
-            return NotFound();
-        }
+        var product = _context.Products.FirstOrDefault(p => p.ProductId == productId);
+        if (product == null) return NotFound();
 
-        // Check if item already exists in cart
-        var existingItem = await _context.CartItems
-            .FirstOrDefaultAsync(ci => ci.ProductId == productId);
+        List<CartItem> cart = TempData["Cart"] as List<CartItem> ?? new List<CartItem>();
 
+        var existingItem = cart.FirstOrDefault(ci => ci.ProductId == productId);
         if (existingItem != null)
         {
             existingItem.Quantity += 1;
         }
         else
         {
-            var cartItem = new CartItem
+            cart.Add(new CartItem
             {
-                ProductId = productId,
-                Quantity = 1,
-                Product = product
-            };
-
-            _context.CartItems.Add(cartItem);
+                ProductId = product.ProductId,
+                Name = product.Name,
+                Price = product.Price,
+                Quantity = 1
+            });
         }
 
-        await _context.SaveChangesAsync();
-        return RedirectToAction("Index");
+        TempData["Cart"] = cart;
+        TempData.Keep("Cart");
+
+        return RedirectToAction("Index", "Cart");
     }
+
 
     ///// <summary>
     ///// This action/method will allow the user to remove something from their 

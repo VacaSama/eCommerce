@@ -12,7 +12,7 @@
 	@foreach (var product in Model)
 	{
 		<div class="card m-3" style="width: 18rem;">
-			<img src="~/images/MilkmanCow.png" class="card-img-top" alt="@product.Name" />
+			<img src="~/images/MartinCow.png" class="card-img-top" alt="@product.Name" />
 			<div class="card-body">
 				<h5 class="card-title">@product.Name</h5>
 				<p class="card-text">Price: $@product.Price.ToString("0.00")</p>
@@ -25,38 +25,4 @@
 			</div>
 		</div>
 	}
-</div>
-
-
-<div>
-	<!--Card 2 - Berry Pie Milk --> 
-	<div class="card" style="width: 18rem;" >
-		<img src="/images/BerryPieMartin.png" class="card-img-top" alt="...">
-		<div class="card-body">
-			<h5 class="card-title">@Html.DisplayFor(p => p.ElementAt(1).Name)</h5>
-			<h6 class="card-subtitle">Spring Limited Edition</h6>
-			<p class="card-text">Who wants to wait until after dinner for dessert? 
-				Enjoy Aunt May's Special Berry-Pie Flavor this Spring, all day long!</p>
-			<p class="card-text">Price: $@Html.DisplayFor(p => p.ElementAt(1).Price)</p>
-			<p class="card-text">Category: @Html.DisplayFor(p => p.ElementAt(1).Category)</p>
-
-			<!--add to cart button-->
-			<a href="#" class="btn btn-primary">Add to Cart</a>
-		</div>
-	</div>
-
-	<!--Card 3 - Chocolate Milk-->
-	<div class="card " style="width: 18rem;">
-		<img src="/images/ChocolateMartin.png" class="card-img-top" alt="...">
-		<div class="card-body">
-			<h5 class="card-title">@Html.DisplayFor(p => p.ElementAt(2).Name)</h5>
-				<p class="card-text">Chocolate lovers... and Chubbs rejoice—this dreamy blend
-					is handcrafted for moo-gical satisfaction..</p>
-			<p class="card-text">Price: $@Html.DisplayFor(p => p.ElementAt(2).Price)</p>
-			<p class="card-text">Category: @Html.DisplayFor(p => p.ElementAt(2).Category)</p>
-
-			<!--add to cart button-->
-			<a href="#" class="btn btn-primary">Add to Cart</a>
-		</div>
-	</div>
 </div>
