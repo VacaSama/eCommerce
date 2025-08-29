@@ -18,21 +18,46 @@ public class CartController : Controller
 
     public async Task<IActionResult> Index()
     {
-        List<Product> allProducts = await _context.Products.ToListAsync();
-
-        return View(allProducts);
+        var cartItems = await _context.CartItems
+                        .Include(ci => ci.Product)
+                        .ToListAsync();
+        return View(cartItems);
     }
 
-    /// <summary>
-    /// This action will allow the user to add something to their cart 
-    /// and pushes the product id to the cart 
-    /// </summary>
-    /// <returns></returns>
-    //[HttpPost]
-    //public IActionResult AddCart()
-    //{
-    //    return View();
-    //}
+
+
+    [HttpPost]
+    public async Task<IActionResult> AddCart(int productId)
+    {
+        var product = await _context.Products.FindAsync(productId);
+        if (product == null)
+        {
+            return NotFound();
+        }
+
+        // Check if item already exists in cart
+        var existingItem = await _context.CartItems
+            .FirstOrDefaultAsync(ci => ci.ProductId == productId);
+
+        if (existingItem != null)
+        {
+            existingItem.Quantity += 1;
+        }
+        else
+        {
+            var cartItem = new CartItem
+            {
+                ProductId = productId,
+                Quantity = 1,
+                Product = product
+            };
+
+            _context.CartItems.Add(cartItem);
+        }
+
+        await _context.SaveChangesAsync();
+        return RedirectToAction("Index");
+    }
 
     ///// <summary>
     ///// This action/method will allow the user to remove something from their 

@@ -30,8 +30,7 @@ public class eCommerceDatabaseContext : DbContext
     /// <summary> --- NOT IMPLEMENTED YET ---
     /// Gets and or sets the collection of OrderDetail in the database
     /// </summary>
-    //public DbSet<CartItem> CartItems { get; set; }
-
+    public DbSet<CartItem> CartItems { get; set; }
 
     public eCommerceDatabaseContext(DbContextOptions options) : base(options)
     { }

@@ -1,4 +1,4 @@
-﻿@model IEnumerable<Product>
+﻿@model IEnumerable<CartItem>
 
 @{
     ViewData["Title"] = "Cart";
@@ -16,64 +16,25 @@
                 </div>
             </div>
 
-@foreach (var item in Model.Product) {// this will connect through the temporary cart items 
+@foreach (var item in Model) {// this will connect through the temporary cart items 
 
             <!--divder classic milk row-->
             <div class="row border-top border-bottom" id="">
                 <div class="row main align-items-center">
-                    <div class="col-2"><img class="img-fluid" src="/images/MartinCow.png"></div>
+                    <div class="col-2"><img class="img-fluid" src="~/images/MilkmanCow.png"></div>
                     <div class="col">
-                        <div class="row text-muted">@Html.DisplayFor(p => p.First().Category)</div>
-                        <div class="row">@Html.DisplayFor(p => p.First().Name)</div>
-                        <div class="row"> ProductID: @Html.DisplayFor(p => p.First().ProductId)</div>
+                        <div class="row text-muted">@item.Product?.Category</div>
+                            <div class="row">@item.Product?.Name</div>
+                            <div class="row"> ProductID: @item.Product?.ProductId</div>
                     </div>
                     <div class="col">
                         <a href="#">-</a><a href="#" class="border">1</a><a href="#">+</a>
                     </div>
                     <!--keep the dollar sign in front of the Price-->
-                    <div class="col"> $@Html.DisplayFor(p => p.First().Price) <span class="close">&#10005;</span></div>
+                        <div class="col"> $@item.Product?.Price <span class="close">&#10005;</span></div>
                 </div>
             </div>
 }
-
-
-            <!--REMOVE EVERYTHING BELOW?-->
-
-
-
-            <!--divder berry pie row-->
-            <div class="row border-top border-bottom">
-                <div class="row main align-items-center">
-                    <div class="col-2"><img class="img-fluid" src="/images/BerryPieMartin.png"></div>
-                    <div class="col">
-                        <div class="row text-muted">@Html.DisplayFor(p => p.ElementAt(1).Category)</div>
-                        <div class="row">@Html.DisplayFor(p => p.ElementAt(1).Name)</div>
-                        <div class="row"> ProductID: @Html.DisplayFor(p => p.ElementAt(1).ProductId)</div>
-                    </div>
-                    <div class="col">
-                        <a href="#">-</a><a href="#" class="border">1</a><a href="#">+</a>
-                    </div>
-                    <div class="col">$@Html.DisplayFor(p => p.ElementAt(1).Price) <span class="close">&#10005;</span></div>
-                </div>
-            </div>
-
-            <!--divder  chocolate row -->
-            <div class="row">
-                <div class="row main align-items-center">
-                    <div class="col-2"><img class="img-fluid" src="/images/ChocolateMartin.png"></div>
-                    <div class="col">
-                        <div class="row text-muted">@Html.DisplayFor(p => p.ElementAt(2).Category)</div>
-                        <div class="row">@Html.DisplayFor(p => p.ElementAt(2).Name)</div>
-                        <div class="row"> ProductID: @Html.DisplayFor(p => p.ElementAt(2).ProductId)</div>
-                        <!--HERE IS WHERE PRODUCT ID WILL GO FROM THE DATABASE-->
-                    </div>
-                    <div class="col">
-                        <a href="#">-</a><a href="#" class="border">1</a><a href="#">+</a>
-                    </div>
-                    <div class="col">$@Html.DisplayFor(p => p.ElementAt(2).Price) <span class="close">&#10005;</span></div>
-                </div>
-            </div>
-
 
     <!-- CHECKOUT SUMMARY -->
             <!--divder back button/href-->
