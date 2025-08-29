@@ -3,8 +3,8 @@
 @{
     ViewData["Title"] = "Cart";
 	// ADD TO CART VIEW ~~ 
+	// Add CartItems to the database -- update database context to include CartItems
 }
-
 
 <!--divder-->
 <div class="card" id="cart-card">
@@ -13,9 +13,10 @@
             <div class="title">
                 <div class="row">
                     <div class="col"><h4><b>Cart</b></h4></div>
-                    <div class="col align-self-center text-right text-muted">3 items</div>
                 </div>
             </div>
+
+@foreach (var item in Model.Product) {// this will connect through the temporary cart items 
 
             <!--divder classic milk row-->
             <div class="row border-top border-bottom" id="">
@@ -33,6 +34,12 @@
                     <div class="col"> $@Html.DisplayFor(p => p.First().Price) <span class="close">&#10005;</span></div>
                 </div>
             </div>
+}
+
+
+            <!--REMOVE EVERYTHING BELOW?-->
+
+
 
             <!--divder berry pie row-->
             <div class="row border-top border-bottom">
@@ -97,7 +104,7 @@
             </div>
 
             <!--divder checkout button-->
-            <button class="btn" id="checkout-button">CHECKOUT</button>
+            <button class="btn-checkout btn" id="checkout-button">CHECKOUT</button>
         </div>
     </div>
 </div>

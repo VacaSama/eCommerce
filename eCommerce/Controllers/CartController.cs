@@ -28,22 +28,21 @@ public class CartController : Controller
     /// and pushes the product id to the cart 
     /// </summary>
     /// <returns></returns>
-    [HttpPost]
-    public IActionResult AddCart()
-    {
-        return View();
-    }
+    //[HttpPost]
+    //public IActionResult AddCart()
+    //{
+    //    return View();
+    //}
 
+    ///// <summary>
+    ///// This action/method will allow the user to remove something from their 
+    ///// cart. If the cart is empty a message will appear.
+    ///// </summary>
+    ///// <returns></returns>
+    //[HttpPost]
 
-    /// <summary>
-    /// This action/method will allow the user to remove something from their 
-    /// cart. If the cart is empty a message will appear.
-    /// </summary>
-    /// <returns></returns>
-    [HttpDelete]
-
-    public IActionResult RemoveCart()
-    {
-        return View();
-    }
+    //public IActionResult RemoveCart()
+    //{
+    //    return View();
+    //}
 }
