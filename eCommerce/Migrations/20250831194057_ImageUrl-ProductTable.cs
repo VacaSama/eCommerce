@@ -5,18 +5,10 @@
 namespace eCommerce.Migrations
 {
     /// <inheritdoc />
-    public partial class BacktrackProductTable : Migration
+    public partial class ImageUrlProductTable : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
-        {
-            migrationBuilder.DropColumn(
-                name: "ImageURL",
-                table: "Products");
-        }
-
-        /// <inheritdoc />
-        protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.AddColumn<string>(
                 name: "ImageURL",
@@ -24,6 +16,14 @@ namespace eCommerce.Migrations
                 type: "nvarchar(max)",
                 nullable: false,
                 defaultValue: "");
+        }
+
+        /// <inheritdoc />
+        protected override void Down(MigrationBuilder migrationBuilder)
+        {
+            migrationBuilder.DropColumn(
+                name: "ImageURL",
+                table: "Products");
         }
     }
 }
