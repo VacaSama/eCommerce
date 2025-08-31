@@ -19,7 +19,7 @@
 				<p class="card-text">Price: $@product.Price.ToString("0.00")</p>
 				<p class="card-text">Category: @product.Category</p>
 
-				<form asp-controller="Cart" asp-action="Index" method="post">
+				<form asp-controller="Cart" asp-action="AddCart" method="post">
 					<input type="hidden" name="productId" value="@product.ProductId" />
 					<button type="submit" class="btn btn-primary">Add to Cart</button>
 				</form>

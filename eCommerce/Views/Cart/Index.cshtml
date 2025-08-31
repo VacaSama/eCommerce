@@ -6,72 +6,47 @@
 	// Add CartItems to the database -- update database context to include CartItems
 }
 
-<!--divder-->
-<div class="card" id="cart-card">
-    <div class="row">
-        <div class="col-md-8 cart">
-            <div class="title">
-                <div class="row">
-                    <div class="col"><h4><b>Cart</b></h4></div>
-                </div>
-            </div>
+@if (Model.Product != null)
+{
+    <div class="alert alert-success">
+        <strong>@Model.Product.Name</strong> has been added to your cart!
+    </div>
+
+    <div class="card mb-4">
+        <img src="~/images/MartinCow.png" class="card-img-top" />
+        <div class="card-body">
+            <h5 class="card-title">@Model.Product.Name</h5>
+            <p class="card-text">Price: $@Model.Product.Price</p>
+            <p class="card-text">Category: @Model.Product.Category</p>
         </div>
     </div>
-</div>
-
-
-@foreach (var item in Model.CartItems)
-{// this will connect through the temporary cart items
-
-
-            <div class="row border-top border-bottom" id="">
-                <div class="row main align-items-center">
-                    <div class="col-2"><img class="img-fluid" src="~/images/MilkmanCow.png"></div>
-                    <div class="col">
-                        <div class="row text-muted">@item.Product?.Category</div>
-                            <div class="row">@item.Product?.Name</div>
-                            <div class="row"> ProductID: @item.Product?.ProductId</div>
-                    </div>
-                    <div class="col">
-                        <a href="#">-</a><a href="#" class="border">1</a><a href="#">+</a>
-
-                            <input type="hidden" name="productId" value="@item.ProductId" />
-                            <input type="hidden" name="change" value="-1" />
-                            <button type="submit">–</button>
-                    </div>
-                    <!--keep the dollar sign in front of the Price-->
-                        <div class="col"> $@item.Product?.Price <span class="close">&#10005;</span></div>
-                </div>
-            </div>
 }
 
-
-
-@*     <!-- CHECKOUT SUMMARY -->
-            <!--divder back button/href-->
-        </div>
-        <div class="col-md-4 summary">
-            <div><h5><b>Summary</b></h5></div>
-            <hr>
-            <div class="row">
-                <div class="col text-right">place holder subtotal $23.47</div>
-            </div>
-
-            <!--divder shipping/discount-->
-            <form>
-                <p>SHIPPING</p>
-                <select><option class="text-muted">Standard-Delivery- $3.00</option></select>
-            </form>
-            <!--divder total cost-->
-
-            <div class="row" id="" style="border-top: 1px solid rgba(0,0,0,.1); padding: 2vh 0;">
-                <div class="col">TOTAL PRICE</div>
-                <!--below is the full total with the standard shipping cost included as a placeholder-->
-                <div class="col text-right">place holder full-total $26.47</div>
-            </div>
-
-            <!--divder checkout button-->
-            <button class="btn-checkout btn" id="checkout-button">CHECKOUT</button>
+@foreach (var item in Model.CartItems)
+{
+    <div class="card mb-3">
+        <img src="~/images/MartinCow.png" class="card-img-top" />
+        <div class="card-body">
+            <h5>@item.Product?.Name</h5>
+            <p>Price: $@item.Product?.Price</p>
+            <p>Quantity: @item.Quantity</p>
         </div>
     </div>
-</div> *@
+}
+
+<div class="col-md-4 summary">
+    <div><h5><b>Summary</b></h5></div>
+    <hr>
+    <div class="row">
+        <div class="col text-right">Subtotal: $@ViewBag.Subtotal</div>
+    </div>
+    <form>
+        <p>SHIPPING</p>
+        <select><option class="text-muted">Standard-Delivery - $@ViewBag.Shipping</option></select>
+    </form>
+    <div class="row" style="border-top: 1px solid rgba(0,0,0,.1); padding: 2vh 0;">
+        <div class="col">TOTAL PRICE</div>
+        <div class="col text-right">$@ViewBag.Total</div>
+    </div>
+    <button class="btn-checkout btn" id="checkout-button">CHECKOUT</button>
+</div>

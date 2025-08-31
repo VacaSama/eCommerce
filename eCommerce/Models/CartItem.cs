@@ -41,5 +41,5 @@ public class CartPreviewViewModel
 {
     public required Product Product { get; set; }
 
-    public List<CartItem>? CartItems { get; set; }
+    public required List<CartItem> CartItems { get; set; }
 }

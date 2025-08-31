@@ -20,27 +20,22 @@ public class CartController : Controller
 
     public IActionResult Index()
     {
-        var cartItems = Cart; // using your static cart list
-
+        Product? lastAddedProduct = null;
+        if (TempData["LastAddedProductId"] is int id)
+        {
+            lastAddedProduct = _context.Products.FirstOrDefault(p => p.ProductId == id);
+        }
 
         var viewModel = new CartPreviewViewModel
         {
-            Product = null, // or use TempData to store the last added product
-            CartItems = cartItems
+            Product = lastAddedProduct,
+            CartItems = Cart
         };
-
-        decimal subtotal = Cart.Sum(item => item.Price * item.Quantity);
-        decimal shipping = 3.00m; // or use dropdown logic
-        decimal total = subtotal + shipping;
-
-        ViewBag.Subtotal = subtotal;
-        ViewBag.Shipping = shipping;
-        ViewBag.Total = total;
 
         return View(viewModel);
     }
 
-    [HttpPost]
+
     public IActionResult AddCart(int productId)
     {
         var product = _context.Products.SingleOrDefault(p => p.ProductId == productId);
@@ -55,41 +50,16 @@ public class CartController : Controller
         {
             Cart.Add(new CartItem
             {
-                ProductId = productId,
+                ProductId = product.ProductId,
                 Name = product.Name,
                 Price = product.Price,
                 Quantity = 1,
-                Product = product // if you're using nested Product info in your view
+                Product = product
             });
         }
 
+        TempData["LastAddedProductId"] = product.ProductId;
         return RedirectToAction("Index");
     }
 
-    //[HttpPost]
-    //public IActionResult UpdateQuantity(int productId, int change)
-    //{
-    //    var item = Cart.FirstOrDefault(ci => ci.ProductId == productId);
-    //    if (item != null)
-    //    {
-    //        item.Quantity += change;
-    //        if (item.Quantity <= 0)
-    //        {
-    //            Cart.Remove(item);
-    //        }
-    //    }
-    //    return RedirectToAction("Index");
-    //}
-
-
-    /// <summary>
-    /// This action/method will allow the user to clear all items from the 
-    /// cart.
-    /// </summary>
-    /// <returns></returns>
-    //public IActionResult RemoveCart()
-    //{
-    //    Cart.Clear();
-    //    return RedirectToAction("Index");
-    //}
 }
