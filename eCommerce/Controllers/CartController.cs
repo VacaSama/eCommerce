@@ -26,6 +26,17 @@ public class CartController : Controller
             lastAddedProduct = _context.Products.FirstOrDefault(p => p.ProductId == id);
         }
 
+        // Calculate subtotal based on current cart
+        decimal subtotal = Cart.Sum(item => item.Price * item.Quantity);
+        decimal shipping = 3.00m; // currently hardcoded
+        decimal total = subtotal + shipping;
+
+        // Pass totals to the view
+        ViewBag.Subtotal = subtotal.ToString("0.00");
+        ViewBag.Shipping = shipping.ToString("0.00");
+        ViewBag.Total = total.ToString("0.00");
+
+
         var viewModel = new CartPreviewViewModel
         {
             Product = lastAddedProduct,
@@ -61,5 +72,26 @@ public class CartController : Controller
         TempData["LastAddedProductId"] = product.ProductId;
         return RedirectToAction("Index");
     }
+
+
+    [HttpPost]
+    public IActionResult UpdateQuantity(int productId, int quantity)
+    {
+
+        var item = Cart.SingleOrDefault(ci => ci.ProductId == productId);
+        if (item == null) return NotFound();
+
+        if (quantity <= 0)
+        {
+            Cart.Remove(item); // ✅ Remove if quantity is zero
+        }
+        else
+        {
+            item.Quantity = quantity;
+        }
+
+        return RedirectToAction("Index");
+    }
+
 
 }

@@ -6,30 +6,39 @@
 	// Add CartItems to the database -- update database context to include CartItems
 }
 
+
+
 @if (Model.Product != null)
 {
     <div class="alert alert-success">
         <strong>@Model.Product.Name</strong> has been added to your cart!
     </div>
+}
 
-    <div class="card mb-4">
-        <img src="~/images/MartinCow.png" class="card-img-top" />
-        <div class="card-body">
-            <h5 class="card-title">@Model.Product.Name</h5>
-            <p class="card-text">Price: $@Model.Product.Price</p>
-            <p class="card-text">Category: @Model.Product.Category</p>
-        </div>
+@if (Model.CartItems == null || !Model.CartItems.Any())
+{
+    <div class="alert alert-warning text-center">
+       Your cart is empty. Why not MOO-ve something delicious over here?
     </div>
 }
 
+
 @foreach (var item in Model.CartItems)
 {
-    <div class="card mb-3">
+    <div class="card w-25 mb-3 m-2">
+
         <img src="~/images/MartinCow.png" class="card-img-top" />
         <div class="card-body">
-            <h5>@item.Product?.Name</h5>
-            <p>Price: $@item.Product?.Price</p>
-            <p>Quantity: @item.Quantity</p>
+            <h5 class="card-title">@item.Product?.Name</h5>
+            <p class="card-text">Price: $@item.Product?.Price</p>
+            <p class="card-text">Category: @item.Product.Category</p>
+
+            <!--Update and Create a Update Quantity Method within the cartcontroller-->
+            <form asp-controller="Cart" asp-action="UpdateQuantity" method="post"> Quantity: 
+                <input type="hidden" name="productId" value="@item.ProductId" />
+                <input type="number" name="quantity" value="@item.Quantity" min="0" />
+                <button type="submit">Update</button>
+            </form>
         </div>
     </div>
 }
