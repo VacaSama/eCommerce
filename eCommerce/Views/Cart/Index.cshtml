@@ -16,6 +16,14 @@
                 </div>
             </div>
 
+            @if (Model != null)
+            {
+                <div class="alert alert-success">
+                    <strong>@Model.name</strong> has been added to your cart!
+                </div>
+            }
+
+
 @foreach (var item in Model) {// this will connect through the temporary cart items 
 
             <!--divder classic milk row-->
@@ -29,6 +37,10 @@
                     </div>
                     <div class="col">
                         <a href="#">-</a><a href="#" class="border">1</a><a href="#">+</a>
+
+                            <input type="hidden" name="productId" value="@item.ProductId" />
+                            <input type="hidden" name="change" value="-1" />
+                            <button type="submit">–</button>
                     </div>
                     <!--keep the dollar sign in front of the Price-->
                         <div class="col"> $@item.Product?.Price <span class="close">&#10005;</span></div>
@@ -38,14 +50,11 @@
 
     <!-- CHECKOUT SUMMARY -->
             <!--divder back button/href-->
-            <div class="back-to-shop"><a href="#">&leftarrow;</a><span class="text-muted">Back</span></div>
         </div>
         <div class="col-md-4 summary">
             <div><h5><b>Summary</b></h5></div>
             <hr>
             <div class="row">
-                <!--figure out how to tinker with quantity-->
-                <div class="col" style="padding-left:0;">ITEMS 3</div>
                 <div class="col text-right">place holder subtotal $23.47</div>
             </div>
 
@@ -53,8 +62,6 @@
             <form>
                 <p>SHIPPING</p>
                 <select><option class="text-muted">Standard-Delivery- $3.00</option></select>
-                <p>DISCOUNT CODE</p>
-                <input id="code" placeholder="Enter your code">
             </form>
             <!--divder total cost-->
 

@@ -34,3 +34,11 @@ public class CartItem
     public string? UserId { get; set; }
 
 }
+
+public class CartPreviewViewModel
+{
+    public required Product Product { get; set; }
+
+
+    public List<CartItem>? CartItems { get; set; }
+}

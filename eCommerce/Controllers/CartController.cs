@@ -32,21 +32,22 @@ public class CartController : Controller
         return View(cart);
     }
 
+    public static List<CartItem> Cart = new(); // Simulated cart
+
+    [HttpPost]
     public IActionResult AddCart(int productId)
     {
-        var product = _context.Products.FirstOrDefault(p => p.ProductId == productId);
+        var product = _context.Products.SingleOrDefault(p => p.ProductId == productId);
         if (product == null) return NotFound();
 
-        List<CartItem> cart = TempData["Cart"] as List<CartItem> ?? new List<CartItem>();
-
-        var existingItem = cart.FirstOrDefault(ci => ci.ProductId == productId);
+        var existingItem = Cart.SingleOrDefault(ci => ci.ProductId == productId);
         if (existingItem != null)
         {
             existingItem.Quantity += 1;
         }
         else
         {
-            cart.Add(new CartItem
+            Cart.Add(new CartItem
             {
                 ProductId = product.ProductId,
                 Name = product.Name,
@@ -55,22 +56,33 @@ public class CartController : Controller
             });
         }
 
-        TempData["Cart"] = cart;
-        TempData.Keep("Cart");
-
-        return RedirectToAction("Index", "Cart");
+        return RedirectToAction("Index", Cart);
     }
 
-
-    ///// <summary>
-    ///// This action/method will allow the user to remove something from their 
-    ///// cart. If the cart is empty a message will appear.
-    ///// </summary>
-    ///// <returns></returns>
     //[HttpPost]
+    //public IActionResult UpdateQuantity(int productId, int change)
+    //{
+    //    var item = Cart.FirstOrDefault(ci => ci.ProductId == productId);
+    //    if (item != null)
+    //    {
+    //        item.Quantity += change;
+    //        if (item.Quantity <= 0)
+    //        {
+    //            Cart.Remove(item);
+    //        }
+    //    }
+    //    return RedirectToAction("Index");
+    //}
 
+
+    /// <summary>
+    /// This action/method will allow the user to clear all items from the 
+    /// cart.
+    /// </summary>
+    /// <returns></returns>
     //public IActionResult RemoveCart()
     //{
-    //    return View();
+    //    Cart.Clear();
+    //    return RedirectToAction("Index");
     //}
 }
