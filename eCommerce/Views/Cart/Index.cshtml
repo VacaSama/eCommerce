@@ -1,103 +1,67 @@
-﻿@model IEnumerable<Product>
+﻿@model CartPreviewViewModel
 
 @{
     ViewData["Title"] = "Cart";
-	// ADD TO CART VIEW ~~ 
 }
 
 
-<!--divder-->
-<div class="card" id="cart-card">
-    <div class="row">
-        <div class="col-md-8 cart">
-            <div class="title">
-                <div class="row">
-                    <div class="col"><h4><b>Cart</b></h4></div>
-                    <div class="col align-self-center text-right text-muted">3 items</div>
-                </div>
-            </div>
+<!-- Validation to make sure the product is actually getting to the cart -->
+@if (Model.Product != null)
+{
+    <div class="alert alert-success">
+        <strong>@Model.Product.Name</strong> has been added to your cart!
+    </div>
+}
+<!-- More validation: If the cart is empty a caution message will appear in the view until 
+    something IS added 
+-->
+@if (Model.CartItems == null || !Model.CartItems.Any())
+{
+    <div class="alert alert-warning text-center">
+       Your cart is empty. Why not MOO-ve something delicious over here?
+    </div>
+}
 
-            <!--divder classic milk row-->
-            <div class="row border-top border-bottom" id="">
-                <div class="row main align-items-center">
-                    <div class="col-2"><img class="img-fluid" src="/images/MartinCow.png"></div>
-                    <div class="col">
-                        <div class="row text-muted">@Html.DisplayFor(p => p.First().Category)</div>
-                        <div class="row">@Html.DisplayFor(p => p.First().Name)</div>
-                        <div class="row"> ProductID: @Html.DisplayFor(p => p.First().ProductId)</div>
-                    </div>
-                    <div class="col">
-                        <a href="#">-</a><a href="#" class="border">1</a><a href="#">+</a>
-                    </div>
-                    <!--keep the dollar sign in front of the Price-->
-                    <div class="col"> $@Html.DisplayFor(p => p.First().Price) <span class="close">&#10005;</span></div>
-                </div>
-            </div>
+ <!-- For every item in the CartItems Model that is added to the cart
+     a new card will be created in reference to whichever productid was connected 
+     to that product
+ -->
+@foreach (var item in Model.CartItems)
+{
+    <div class="card w-25 mb-3 m-2">
 
-            <!--divder berry pie row-->
-            <div class="row border-top border-bottom">
-                <div class="row main align-items-center">
-                    <div class="col-2"><img class="img-fluid" src="/images/BerryPieMartin.png"></div>
-                    <div class="col">
-                        <div class="row text-muted">@Html.DisplayFor(p => p.ElementAt(1).Category)</div>
-                        <div class="row">@Html.DisplayFor(p => p.ElementAt(1).Name)</div>
-                        <div class="row"> ProductID: @Html.DisplayFor(p => p.ElementAt(1).ProductId)</div>
-                    </div>
-                    <div class="col">
-                        <a href="#">-</a><a href="#" class="border">1</a><a href="#">+</a>
-                    </div>
-                    <div class="col">$@Html.DisplayFor(p => p.ElementAt(1).Price) <span class="close">&#10005;</span></div>
-                </div>
-            </div>
+        <img src="~/images/MartinCow.png" class="card-img-top" />
+        <div class="card-body">
+            <h5 class="card-title">@item.Product?.Name</h5>
+            <p class="card-text">Price: $@item.Product?.Price</p>
+            <p class="card-text">Category: @item.Product.Category</p>
 
-            <!--divder  chocolate row -->
-            <div class="row">
-                <div class="row main align-items-center">
-                    <div class="col-2"><img class="img-fluid" src="/images/ChocolateMartin.png"></div>
-                    <div class="col">
-                        <div class="row text-muted">@Html.DisplayFor(p => p.ElementAt(2).Category)</div>
-                        <div class="row">@Html.DisplayFor(p => p.ElementAt(2).Name)</div>
-                        <div class="row"> ProductID: @Html.DisplayFor(p => p.ElementAt(2).ProductId)</div>
-                        <!--HERE IS WHERE PRODUCT ID WILL GO FROM THE DATABASE-->
-                    </div>
-                    <div class="col">
-                        <a href="#">-</a><a href="#" class="border">1</a><a href="#">+</a>
-                    </div>
-                    <div class="col">$@Html.DisplayFor(p => p.ElementAt(2).Price) <span class="close">&#10005;</span></div>
-                </div>
-            </div>
-
-
-    <!-- CHECKOUT SUMMARY -->
-            <!--divder back button/href-->
-            <div class="back-to-shop"><a href="#">&leftarrow;</a><span class="text-muted">Back</span></div>
-        </div>
-        <div class="col-md-4 summary">
-            <div><h5><b>Summary</b></h5></div>
-            <hr>
-            <div class="row">
-                <!--figure out how to tinker with quantity-->
-                <div class="col" style="padding-left:0;">ITEMS 3</div>
-                <div class="col text-right">place holder subtotal $23.47</div>
-            </div>
-
-            <!--divder shipping/discount-->
-            <form>
-                <p>SHIPPING</p>
-                <select><option class="text-muted">Standard-Delivery- $3.00</option></select>
-                <p>DISCOUNT CODE</p>
-                <input id="code" placeholder="Enter your code">
+            <!--Update and Create a Update Quantity Method within the cartcontroller-->
+            <form asp-controller="Cart" asp-action="UpdateQuantity" method="post"> Quantity: 
+                <input type="hidden" name="productId" value="@item.ProductId" />
+                <input type="number" name="quantity" value="@item.Quantity" min="0" />
+                <button type="submit">Update</button>
             </form>
-            <!--divder total cost-->
-
-            <div class="row" id="" style="border-top: 1px solid rgba(0,0,0,.1); padding: 2vh 0;">
-                <div class="col">TOTAL PRICE</div>
-                <!--below is the full total with the standard shipping cost included as a placeholder-->
-                <div class="col text-right">place holder full-total $26.47</div>
-            </div>
-
-            <!--divder checkout button-->
-            <button class="btn" id="checkout-button">CHECKOUT</button>
         </div>
     </div>
+}
+<!-- This is the Summary View, Adding it to the loop doubles it
+    so it is in plain view and every user starts off with a default 
+    shipping cost of $3.00 as of right now.
+-->
+<div class="col-md-4 summary">
+    <div><h5><b>Summary</b></h5></div>
+    <hr>
+    <div class="row">
+        <div class="col text-right">Subtotal: $@ViewBag.Subtotal</div>
+    </div>
+    <form>
+        <p>SHIPPING</p>
+        <select><option class="text-muted">Standard-Delivery - $@ViewBag.Shipping</option></select>
+    </form>
+    <div class="row" style="border-top: 1px solid rgba(0,0,0,.1); padding: 2vh 0;">
+        <div class="col">TOTAL PRICE</div>
+        <div class="col text-right">$@ViewBag.Total</div>
+    </div>
+    <button class="btn-checkout btn" id="checkout-button">CHECKOUT</button>
 </div>
