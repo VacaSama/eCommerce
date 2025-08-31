@@ -23,11 +23,16 @@ public class Customer
     /// <summary>
     /// 
     /// </summary>
+    [DataType(DataType.EmailAddress)]
     public required string Email { get; set; }
 
     /// <summary>
     /// 
     /// </summary>
+    /// 
+    [StringLength(50, MinimumLength = 8)]
+
+    [DataType(DataType.Password)]
     public required string Password { get; set; }
 
 
@@ -35,6 +40,7 @@ public class Customer
     /// 
     /// </summary>
     [Compare(nameof(Password), ErrorMessage = "Passwords do not match.")]
+    [DataType(DataType.Password)]
     public required string ConfirmPassword { get; set; }
 
     /// <summary>

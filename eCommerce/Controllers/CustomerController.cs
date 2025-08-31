@@ -1,6 +1,7 @@
 ﻿using eCommerce.Data;
 using eCommerce.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace eCommerce.Controllers;
 
@@ -47,10 +48,25 @@ public class CustomerController : Controller
         return View(reg);
     }
 
+
+    [HttpGet]
     public IActionResult Login()
     {
         return View();
     }
 
+    [HttpPost]
+    public async Task<IActionResult> Login(LoginViewModel login)
+    {
+        if (ModelState.IsValid && login != null)
+        {
+            // check if a customer email already matches to one in the database?
+
+            Customer? loggedInCustomer = await _context.Customers.Where(c => c.Email == login.Email 
+                              && c.Password == login.Password).SingleOrDefaultAsync();
+        }
+
+        return View(login);
+    }
 
 }
