@@ -15,6 +15,9 @@ public class CartItem
     public int ProductId { get; set; }
     
     //Product is optional, because the user may or may not have an empty cart. 
+    /// <summary>
+    /// Retrieving all properties from Product
+    /// </summary>
     public Product? Product { get; set; }
 
 
@@ -37,6 +40,11 @@ public class CartItem
 
 }
 
+
+/// <summary>
+/// CartPreviewViewModel allows me to retrieve and store from both 
+/// Product and CartItem. 
+/// </summary>
 public class CartPreviewViewModel
 {
     public required Product Product { get; set; }

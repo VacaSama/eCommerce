@@ -16,8 +16,18 @@ public class CartController : Controller
         _context = context;
     }
 
+    /// <summary>
+    /// This represents a temporary list of cart for the user. 
+    /// </summary>
     public static List<CartItem> Cart = new(); // Simulated cart
 
+
+    /// <summary>
+    /// CART INDEX// This calculates the total, subtotal and hardcodes the shipping cost
+    /// so that the view can update automatically, it returns the viewModel 
+    /// and stores temporary data so that the cart can stay up to date. 
+    /// </summary>
+    /// <returns></returns>
     public IActionResult Index()
     {
         Product? lastAddedProduct = null;
@@ -46,7 +56,12 @@ public class CartController : Controller
         return View(viewModel);
     }
 
-
+    /// <summary>
+    /// AddCart takes a param of productId (int), to find and add a product using the productid
+    /// to the cart. 
+    /// </summary>
+    /// <param name="productId"></param>
+    /// <returns></returns>
     public IActionResult AddCart(int productId)
     {
         var product = _context.Products.SingleOrDefault(p => p.ProductId == productId);
@@ -73,6 +88,13 @@ public class CartController : Controller
         return RedirectToAction("Index");
     }
 
+    /// <summary>
+    /// UpdateQuantity takes two params int productId and int quantity, deafult quantity is 1. 
+    /// If the Quantity is equal to or less than zero it gets completely removed from the temporary cart. 
+    /// </summary>
+    /// <param name="productId"></param>
+    /// <param name="quantity"></param>
+    /// <returns></returns>
 
     [HttpPost]
     public IActionResult UpdateQuantity(int productId, int quantity)

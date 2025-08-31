@@ -13,6 +13,13 @@ public class ProductController : Controller
     {
         _context = context;
     }
+
+    /// <summary>
+    /// This takes all of the Products with the eCommerceDatabaseContext 
+    /// in an asyncronous way and allows me to retrieve them and distribute them 
+    /// throughout the pages that I need the data from 
+    /// </summary>
+    /// <returns></returns>
     public async Task<IActionResult> Index()
     {
         List<Product> allProducts = await _context.Products.ToListAsync();
