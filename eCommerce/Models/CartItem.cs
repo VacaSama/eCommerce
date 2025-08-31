@@ -19,7 +19,9 @@ public class CartItem
 
 
     [Required]
-    public string Name { get; set; } 
+    public required string Name { get; set; }
+
+    [Required]
 
     public decimal Price { get; set; }
 
@@ -27,7 +29,7 @@ public class CartItem
     [Range(1, int.MaxValue, ErrorMessage = "Quantity must be at least 1")]
     public int Quantity { get; set; }
 
-    public string Category { get; set; }
+    public string? Category { get; set; }
 
     // UserId is optional, because the user may or may not be logged in or want to 
     // complete the purchase as a guest. 
@@ -38,7 +40,6 @@ public class CartItem
 public class CartPreviewViewModel
 {
     public required Product Product { get; set; }
-
 
     public List<CartItem>? CartItems { get; set; }
 }

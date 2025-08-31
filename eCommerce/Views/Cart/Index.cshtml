@@ -1,4 +1,4 @@
-﻿@model List<CartItem>
+﻿@model CartPreviewViewModel
 
 @{
     ViewData["Title"] = "Cart";
@@ -15,18 +15,15 @@
                     <div class="col"><h4><b>Cart</b></h4></div>
                 </div>
             </div>
-
-            @if (Model != null)
-            {
-                <div class="alert alert-success">
-                    <strong>@Model.name</strong> has been added to your cart!
-                </div>
-            }
+        </div>
+    </div>
+</div>
 
 
-@foreach (var item in Model) {// this will connect through the temporary cart items 
+@foreach (var item in Model.CartItems)
+{// this will connect through the temporary cart items
 
-            <!--divder classic milk row-->
+
             <div class="row border-top border-bottom" id="">
                 <div class="row main align-items-center">
                     <div class="col-2"><img class="img-fluid" src="~/images/MilkmanCow.png"></div>
@@ -48,7 +45,9 @@
             </div>
 }
 
-    <!-- CHECKOUT SUMMARY -->
+
+
+@*     <!-- CHECKOUT SUMMARY -->
             <!--divder back button/href-->
         </div>
         <div class="col-md-4 summary">
@@ -75,4 +74,4 @@
             <button class="btn-checkout btn" id="checkout-button">CHECKOUT</button>
         </div>
     </div>
-</div>
+</div> *@

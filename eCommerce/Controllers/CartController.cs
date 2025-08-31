@@ -16,12 +16,20 @@ public class CartController : Controller
         _context = context;
     }
 
+    public static List<CartItem> Cart = new(); // Simulated cart
+
     public IActionResult Index()
     {
-        var cart = TempData["Cart"] as List<CartItem> ?? new List<CartItem>();
-        TempData.Keep("Cart");
+        var cartItems = Cart; // using your static cart list
 
-        decimal subtotal = cart.Sum(item => item.Price * item.Quantity);
+
+        var viewModel = new CartPreviewViewModel
+        {
+            Product = null, // or use TempData to store the last added product
+            CartItems = cartItems
+        };
+
+        decimal subtotal = Cart.Sum(item => item.Price * item.Quantity);
         decimal shipping = 3.00m; // or use dropdown logic
         decimal total = subtotal + shipping;
 
@@ -29,10 +37,8 @@ public class CartController : Controller
         ViewBag.Shipping = shipping;
         ViewBag.Total = total;
 
-        return View(cart);
+        return View(viewModel);
     }
-
-    public static List<CartItem> Cart = new(); // Simulated cart
 
     [HttpPost]
     public IActionResult AddCart(int productId)
@@ -49,14 +55,15 @@ public class CartController : Controller
         {
             Cart.Add(new CartItem
             {
-                ProductId = product.ProductId,
+                ProductId = productId,
                 Name = product.Name,
                 Price = product.Price,
-                Quantity = 1
+                Quantity = 1,
+                Product = product // if you're using nested Product info in your view
             });
         }
 
-        return RedirectToAction("Index", Cart);
+        return RedirectToAction("Index");
     }
 
     //[HttpPost]
