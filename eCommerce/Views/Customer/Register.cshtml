@@ -5,7 +5,13 @@
 	ViewData["Title"] = "Register" ;
 
 }
-<div class="card">
+
+<!-- The card below contains fields that are needed in order
+	for the users information to be documented into teh database, 
+	the phone is optional because i figure it can be added later
+	pretty easily.
+-->
+<div class="card m-2 mb-2" style="width: 25rem;">
 <h2 class="text-center card-header">Register</h2>
 
 <form method="post">
@@ -45,7 +51,7 @@
 		<span asp-validation-for="Phone" class="text-danger"></span>
 	</div>
 
-	<div class=" card-body">
+	<div class="h4 card-text">
 		<p>SHIPPING INFORMATION</p>
 	</div>
 
@@ -68,7 +74,7 @@
 	</div>
 
 	<div>
-		<button type="submit" class="btn btn-primary">Register</button>
+		<button type="submit" class="btn btn-primary mb-2 m-2">Register</button>
 	</div>
 
 </form>

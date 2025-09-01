@@ -68,8 +68,8 @@ public class CustomerController : Controller
 
         if (loggedInCustomer != null)
         {
+
             TempData["LoginMessage"] = $"Welcome back, {loggedInCustomer.FirstName}!";
-            // You could store session info here if needed
             return RedirectToAction("Index", "Home");
         }
         else
