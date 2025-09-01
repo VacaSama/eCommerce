@@ -20,6 +20,11 @@
     <div class="alert alert-warning text-center">
        Your cart is empty. Why not MOO-ve something delicious over here?
     </div>
+
+    <form asp-controller="Product" asp-action="Index" method="get">
+        <button type="submit" class="btn btn-primary mb-2 m-2">View Products</button>
+    </form>
+
 }
 
  <!-- For every item in the CartItems Model that is added to the cart
@@ -44,24 +49,28 @@
             </form>
         </div>
     </div>
+
+
+
+
+    <!-- This is the Summary View, Adding it to the loop doubles it
+        so it is in plain view and every user starts off with a default
+        shipping cost of $3.00 as of right now.
+    -->
+    <div class="col-md-4 summary">
+        <div><h5><b>Summary</b></h5></div>
+        <hr>
+        <div class="row">
+            <div class="col text-right">Subtotal: $@ViewBag.Subtotal</div>
+        </div>
+        <form>
+            <p>SHIPPING</p>
+            <select><option class="text-muted">Standard-Delivery - $@ViewBag.Shipping</option></select>
+        </form>
+        <div class="row" style="border-top: 1px solid rgba(0,0,0,.1); padding: 2vh 0;">
+            <div class="col">TOTAL PRICE</div>
+            <div class="col text-right">$@ViewBag.Total</div>
+        </div>
+        <button class="btn-checkout btn" id="checkout-button">CHECKOUT</button>
+    </div>
 }
-<!-- This is the Summary View, Adding it to the loop doubles it
-    so it is in plain view and every user starts off with a default 
-    shipping cost of $3.00 as of right now.
--->
-<div class="col-md-4 summary">
-    <div><h5><b>Summary</b></h5></div>
-    <hr>
-    <div class="row">
-        <div class="col text-right">Subtotal: $@ViewBag.Subtotal</div>
-    </div>
-    <form>
-        <p>SHIPPING</p>
-        <select><option class="text-muted">Standard-Delivery - $@ViewBag.Shipping</option></select>
-    </form>
-    <div class="row" style="border-top: 1px solid rgba(0,0,0,.1); padding: 2vh 0;">
-        <div class="col">TOTAL PRICE</div>
-        <div class="col text-right">$@ViewBag.Total</div>
-    </div>
-    <button class="btn-checkout btn" id="checkout-button">CHECKOUT</button>
-</div>
