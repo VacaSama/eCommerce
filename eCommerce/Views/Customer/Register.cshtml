@@ -6,10 +6,20 @@
 
 }
 
-<h2 class="text-center">Register</h2>
+<!-- The card below contains fields that are needed in order
+	for the users information to be documented into teh database, 
+	the phone is optional because i figure it can be added later
+	pretty easily.
+-->
+<div class="card m-2 mb-2" style="width: 25rem;">
+<h2 class="text-center card-header">Register</h2>
 
 <form method="post">
-	<div>
+	<div >
+
+		<!--kept copying this div/label so that it can retrieve and insert
+				data into the database. Registration saves new customer info
+		-->
 		<label asp-for = "FirstName">First Name:</label>
 		<input asp-for="FirstName" class="form-control" />
 		<span asp-validation-for="FirstName" class="text-danger"></span>
@@ -40,11 +50,43 @@
 	</div>
 
 	<div>
-		<button type="submit" class="btn btn-primary">Register</button>
+		<label asp-for="Phone">Phone: </label>
+		<input asp-for="Phone" class="form-control" />
+		<span asp-validation-for="Phone" class="text-danger"></span>
+	</div>
+
+	<div class="h4 card-text">
+		<p>SHIPPING INFORMATION</p> <!-- I debated placing shipping info 
+			in a separate card and form but i think this would be easier for submission right now 
+		-->
+	</div>
+
+	<div>
+		<label asp-for="StreetAddress">Street Address: </label>
+		<input asp-for="StreetAddress" class="form-control" />
+		<span asp-validation-for="StreetAddress" class="text-danger"></span>
+	</div>
+
+	<div>
+		<label asp-for="City">City: </label>
+		<input asp-for="City" class="form-control" />
+		<span asp-validation-for="City" class="text-danger"></span>
+	</div>
+
+	<div>
+		<label asp-for="State">State: </label>
+		<input asp-for="State" class="form-control" />
+		<span asp-validation-for="State" class="text-danger"></span>
+	</div>
+
+	<div>
+		<button type="submit" class="btn btn-primary mb-2 m-2">Register</button>
 	</div>
 
 </form>
+</div>
 
+<!--This section is needed for validation of the form-->
 @section Scripts { 
 		@{ 
 		await Html.RenderPartialAsync("_ValidationScriptsPartial");

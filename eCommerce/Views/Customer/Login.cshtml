@@ -4,11 +4,22 @@
 	ViewData["Title"] = "Login";
 }
 
+
+<!-- keep this here. it sends a login warning if the email/password is wrong oro
+	non-exsistent
+-->
+@if (TempData["LoginMessage"] != null)
+{
+	<div class="alert alert-danger text-center">
+		@TempData["LoginMessage"]
+	</div>
+}
+
+<div class="card m-2 mb-2" style="width: 25rem;">
 <h2 class="text-center">Login</h2>
 
 <form method="post">
 
-	
 	<div class="text-danger" asp-validation-summary="All"></div>
 	<div>
 		<label asp-for="Email">Enter Email: </label>
@@ -23,10 +34,12 @@
 	</div>
 
 	<div>
-		<button type="submit" class="btn btn-primary">Login</button>
+		<button type="submit" class="btn btn-primary m-3">Login</button>
 	</div>
 
 </form>
+
+</div>
 
 @section Scripts {
 	@{
