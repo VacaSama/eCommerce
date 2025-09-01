@@ -16,6 +16,10 @@
 
 <form method="post">
 	<div >
+
+		<!--kept copying this div/label so that it can retrieve and insert
+				data into the database. Registration saves new customer info
+		-->
 		<label asp-for = "FirstName">First Name:</label>
 		<input asp-for="FirstName" class="form-control" />
 		<span asp-validation-for="FirstName" class="text-danger"></span>
@@ -52,7 +56,9 @@
 	</div>
 
 	<div class="h4 card-text">
-		<p>SHIPPING INFORMATION</p>
+		<p>SHIPPING INFORMATION</p> <!-- I debated placing shipping info 
+			in a separate card and form but i think this would be easier for submission right now 
+		-->
 	</div>
 
 	<div>
@@ -79,6 +85,8 @@
 
 </form>
 </div>
+
+<!--This section is needed for validation of the form-->
 @section Scripts { 
 		@{ 
 		await Html.RenderPartialAsync("_ValidationScriptsPartial");

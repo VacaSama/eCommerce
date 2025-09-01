@@ -60,7 +60,7 @@ public class Customer
 
 
 /// <summary>
-/// 
+/// A class within a class, brilliant. It is used as a ViewModel for registration.
 /// </summary>
 public class RegistrationViewModel
 {
@@ -95,6 +95,10 @@ public class RegistrationViewModel
     public required string State { get; set; }
 }
 
+/// <summary>
+/// LoginViewmodel is another class within a class that is related to Customers class
+/// so it will be stored here. Yes, you can do that. It is used as a ViewModel for login.
+/// </summary>
 public class LoginViewModel
 {
 

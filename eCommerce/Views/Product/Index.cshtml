@@ -9,6 +9,9 @@
 </div>
 
 <div id="product-cards" class="row">
+	<!-- Using a foreach loop  in replacement of the multiple cards i had prior.
+		We can just loop through the products in the database
+	-->
 	@foreach (var product in Model)
 	{
 		<div class="card m-3" style="width: 18rem;">
