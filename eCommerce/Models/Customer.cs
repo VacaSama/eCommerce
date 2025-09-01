@@ -35,14 +35,6 @@ public class Customer
     [DataType(DataType.Password)]
     public required string Password { get; set; }
 
-
-    /// <summary>
-    /// 
-    /// </summary>
-    [Compare(nameof(Password), ErrorMessage = "Passwords do not match.")]
-    [DataType(DataType.Password)]
-    public required string ConfirmPassword { get; set; }
-
     /// <summary>
     /// 
     /// </summary>
