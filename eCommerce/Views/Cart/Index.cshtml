@@ -35,22 +35,20 @@
 {
     <div class="card w-25 mb-3 m-2">
 
-        <img src="~/images/MartinCow.png" class="card-img-top" />
+        <img src="~/images/@item.Product?.ImageUrl" class="card-img-top" />
         <div class="card-body">
             <h5 class="card-title">@item.Product?.Name</h5>
             <p class="card-text">Price: $@item.Product?.Price</p>
-            <p class="card-text">Category: @item.Product.Category</p>
+            <p class="card-text">Category: @item.Product?.Category</p>
 
             <!--Update and Create a Update Quantity Method within the cartcontroller-->
             <form asp-controller="Cart" asp-action="UpdateQuantity" method="post"> Quantity: 
                 <input type="hidden" name="productId" value="@item.ProductId" />
                 <input type="number" name="quantity" value="@item.Quantity" min="0" />
-                <button type="submit">Update</button>
+                <a class="btn btn-primary">Update</a>
             </form>
         </div>
     </div>
-
-
 
 
     <!-- This is the Summary View, Adding it to the loop doubles it
@@ -71,6 +69,6 @@
             <div class="col">TOTAL PRICE</div>
             <div class="col text-right">$@ViewBag.Total</div>
         </div>
-        <button class="btn-checkout btn" id="checkout-button">CHECKOUT</button>
+        <a class="btn btn-primary" id="checkout-button">CHECKOUT</a>
     </div>
 }
