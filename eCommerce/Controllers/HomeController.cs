@@ -21,12 +21,20 @@ namespace eCommerce.Controllers
             return View();
         }
 
-
         /// <summary>
         /// This returns the Privacy View Page
         /// </summary>
         /// <returns></returns>
         public IActionResult Privacy()
+        {
+            return View();
+        }
+
+        /// <summary>
+        /// This returns the About Us View Page
+        /// </summary>
+        /// <returns></returns>
+        public IActionResult AboutUs()
         {
             return View();
         }
