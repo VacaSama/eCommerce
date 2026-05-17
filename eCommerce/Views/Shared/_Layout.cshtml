@@ -8,6 +8,8 @@
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/eCommerce.styles.css" asp-append-version="true" />
+    <link rel="icon" type="image/png" href="~/images/TreeFarms.png" />
+
 </head>
 <body>
     <header>
@@ -19,6 +21,7 @@
                         aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
+
                 <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
                     <ul class="navbar-nav flex-grow-1">
                       
@@ -34,16 +37,15 @@
                             <a class="nav-link text-dark" asp-area="" asp-controller="Cart" asp-action="Index">View Cart</a>
                         </li>
 
-                        <li class="nav-item">
+                        <li class="nav-item" style="margin-left:auto">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Customer" asp-action="Register">Register</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Customer" asp-action="Login">Login</a>
                         </li>
 
-
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+                            <a class="nav-link text-dark" asp-area="" asp-controller="" asp-action="">Cart</a>
                         </li>
 
                         <!-- Add an add to cart option, emoji etc.-->
