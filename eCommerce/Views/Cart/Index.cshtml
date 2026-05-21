@@ -46,8 +46,12 @@
                 <form asp-controller="Cart" asp-action="UpdateQuantity" method="post"> Quantity: 
                     <input type="hidden" name="productId" value="@item.ProductId" />
                     <input type="number" name="quantity" value="@item.Quantity" min="0" />
-                    <a class="btn btn-primary">Update</a>
-                    <a class="btn btn-danger">Remove Item</a>
+                    <button class="btn btn-primary">Update</button>
+                </form>
+
+                <form asp-controller="Cart" asp-action="RemoveItem">
+                        <input type="hidden" name="productId" value="@item.ProductId" />
+                        <button class="btn btn-danger">Remove Item</button>
                 </form>
             </div>
         </div>
