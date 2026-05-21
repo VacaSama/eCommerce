@@ -1,11 +1,12 @@
 ﻿using System.Security.Cryptography.X509Certificates;
 using eCommerce.Models;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
 
 namespace eCommerce.Data;
 
-public class eCommerceDbContext : DbContext
+public class eCommerceDbContext : IdentityDbContext
 {
     /// <summary>
     /// Gets and or sets the collection of Product in the database
