@@ -7,9 +7,9 @@ namespace eCommerce.Controllers;
 
 public class ProductController : Controller
 {
-    private readonly eCommerceDatabaseContext _context;
+    private readonly eCommerceDbContext _context;
 
-    public ProductController(eCommerceDatabaseContext context)
+    public ProductController(eCommerceDbContext context)
     {
         _context = context;
     }

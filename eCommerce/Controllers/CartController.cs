@@ -8,10 +8,10 @@ namespace eCommerce.Controllers;
 
 public class CartController : Controller
 {
-    private readonly eCommerceDatabaseContext _context;
+    private readonly eCommerceDbContext _context;
 
     //// constructor 
-    public CartController(eCommerceDatabaseContext context)
+    public CartController(eCommerceDbContext context)
     {
         _context = context;
     }

@@ -6,8 +6,8 @@ namespace eCommerce.Data
     {
         public static void Initialize(IServiceProvider serviceProvider)
         {
-            using (var context = new eCommerceDatabaseContext(
-                serviceProvider.GetRequiredService<DbContextOptions<eCommerceDatabaseContext>>()))
+            using (var context = new eCommerceDbContext(
+                serviceProvider.GetRequiredService<DbContextOptions<eCommerceDbContext>>()))
             {
                 // Look for any products.
                 if (context.Products.Any())

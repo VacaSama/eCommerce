@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace eCommerce.Data;
 
-public class eCommerceDatabaseContext : DbContext
+public class eCommerceDbContext : DbContext
 {
     /// <summary>
     /// Gets and or sets the collection of Product in the database
@@ -32,7 +32,7 @@ public class eCommerceDatabaseContext : DbContext
     /// </summary>
     public DbSet<CartItem> CartItems { get; set; }
 
-    public eCommerceDatabaseContext(DbContextOptions options) : base(options)
+    public eCommerceDbContext(DbContextOptions options) : base(options)
     { }
         // intentionally left blank
         // need to retrieve the products from the database

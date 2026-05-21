@@ -11,7 +11,7 @@ using eCommerce.Data;
 
 namespace eCommerce.Migrations
 {
-    [DbContext(typeof(eCommerceDatabaseContext))]
+    [DbContext(typeof(eCommerceDbContext))]
     [Migration("20260516201603_SeedData-Products")]
     partial class SeedDataProducts
     {
