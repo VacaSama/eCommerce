@@ -11,7 +11,17 @@ public class Customer
     public int CustomerId { get; set; }
 
     // Link to IdentityUser BELOW
+    /// <summary>
+    /// Unique Identifier for the IdentityUser associated with this Customer. This is an optional field and can
+    /// be null if the customer has not registered or logged in. If provided, it must correspond to a valid IdentityUser in the system.
+    /// </summary>
     public string? IdentityUserId { get; set; }
+
+    /// <summary>
+    /// The identity user associated with the current context.
+    /// </summary>
+    /// <remarks>Nullable; may be null when the user is unauthenticated or the property has not been set.
+    /// Callers should check for null before accessing members.</remarks>
     public IdentityUser? IdentityUser { get; set; }
 
     // Customer Personal Information BELOW
