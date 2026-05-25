@@ -6,107 +6,61 @@ namespace eCommerce.Models;
 public class Customer
 {
     /// <summary>
-    /// 
+    /// Unique Identifier for the Customer Model 
     /// </summary>
     public int CustomerId { get; set; }
 
+    // Link to IdentityUser BELOW
     /// <summary>
-    /// 
+    /// Unique Identifier for the IdentityUser associated with this Customer. This is an optional field and can
+    /// be null if the customer has not registered or logged in. If provided, it must correspond to a valid IdentityUser in the system.
+    /// </summary>
+    public string? IdentityUserId { get; set; }
+
+    /// <summary>
+    /// The identity user associated with the current context.
+    /// </summary>
+    /// <remarks>Nullable; may be null when the user is unauthenticated or the property has not been set.
+    /// Callers should check for null before accessing members.</remarks>
+    public IdentityUser? IdentityUser { get; set; }
+
+    // Customer Personal Information BELOW
+    /// <summary>
+    /// Gets or sets the first name of the customer. This is a required field and cannot be null or empty.
     /// </summary>
     public required string FirstName { get; set; }
 
     /// <summary>
-    /// 
+    /// Gets or sets the last name of the customer. This is a required field and cannot be null or empty.
     /// </summary>
     public required string LastName { get; set; }
 
+    // Customer Billing Information BELOW
     /// <summary>
-    /// 
-    /// </summary>
-    [DataType(DataType.EmailAddress)]
-    public required string Email { get; set; }
-
-    /// <summary>
-    /// 
-    /// </summary>
-    /// 
-    [StringLength(50, MinimumLength = 8)]
-
-    [DataType(DataType.Password)]
-    public required string Password { get; set; }
-
-    /// <summary>
-    /// 
+    /// Gets or sets the phone number of the customer. This is an optional field and must be a valid email format.
     /// </summary>
     public string? Phone { get; set; }
 
     /// <summary>
-    /// 
+    /// Gets or sets the Street Address of the customer. This is a required field and cannot be null or empty.
     /// </summary>
-
-    public required string StreetAddress { get; set; } 
-
-    /// <summary>
-    /// 
-    /// </summary>
-
-    public required string City { get; set; }
-
-    /// <summary>
-    /// 
-    /// </summary>
-    public required string State { get; set; }
-}
-
-
-/// <summary>
-/// A class within a class, brilliant. It is used as a ViewModel for registration.
-/// </summary>
-public class RegistrationViewModel
-{
-
-    public required string FirstName { get; set; }
-
-    public required string LastName { get; set; }
-
-
-    [DataType(DataType.EmailAddress)]
-    public required string Email { get; set; }
-
-
-    [StringLength(50, MinimumLength = 8)]
-
-    [DataType(DataType.Password)]
-    public required string Password { get; set; }
-
-    /// <summary>
-    /// 
-    /// </summary>
-    [Compare(nameof(Password), ErrorMessage = "Passwords do not match.")]
-    [DataType(DataType.Password)]
-    public required string ConfirmPassword { get; set; }
-
-    public string? Phone { get; set; }
-
     public required string StreetAddress { get; set; }
 
+    /// <summary>
+    /// Gets or sets the city of the customer. This is a required field and cannot be null or empty.
+    /// </summary>
     public required string City { get; set; }
 
+    /// <summary>
+    /// Gets or sets the state of the customer. This is a required field and cannot be null or empty.
+    /// </summary>
     public required string State { get; set; }
+
+    /// <summary>
+    /// Gets or sets the zip code of the customer. This is a required field and cannot be null or empty.
+    /// </summary>
+    public required string ZipCode { get; set; }
 }
 
-/// <summary>
-/// LoginViewmodel is another class within a class that is related to Customers class
-/// so it will be stored here. Yes, you can do that. It is used as a ViewModel for login.
-/// </summary>
-public class LoginViewModel
-{
-
-    [DataType(DataType.EmailAddress)]
-    public required string  Email { get; set;}
 
 
-    [DataType(DataType.Password)]
-    public required string  Password {get; set;} 
-}
-  

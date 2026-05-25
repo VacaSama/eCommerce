@@ -10,7 +10,7 @@ using eCommerce.Data;
 
 namespace eCommerce.Migrations
 {
-    [DbContext(typeof(eCommerceDatabaseContext))]
+    [DbContext(typeof(eCommerceDbContext))]
     [Migration("20250827195737_ProductUpdate")]
     partial class ProductUpdate
     {

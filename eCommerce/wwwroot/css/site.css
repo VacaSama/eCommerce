@@ -33,10 +33,11 @@ body {
 
 .banner-img {
     width: 100%;
-    height: 760px;
+    max-height: 560px;
     object-fit: contain;
     display: block;
     padding: 20px;
+    margin: 0 auto;
 }
 
 .carousel-caption {
@@ -61,16 +62,29 @@ body {
     margin: 15px;
     line-height: 1.4;
 }
-.carousel-control-prev {
-    left: 200px;
+
+.carousel-control-prev-icon,
+.carousel-control-next-icon 
+{
+    filter: invert(100%);
+    width: 3rem;
+    height: 3rem
 }
 
-.carousel-control-next {
-    right: 200px;
+.carousel-control-prev {
+    opacity: 1;
+    width: 5%;
+    left: 300px;
 }
+.carousel-control-next {
+    opacity: 1;
+    width: 5%;
+    right: 300px;
+}
+
 
 .logo { 
-    max-width: 10%;  
+    max-width: 7%;  
 }
 
 .product-cards {
@@ -83,5 +97,12 @@ body {
     color: white;
 }
 
+.cart-card {
+    max-width: 250px;
+}
 
+.cart-img {
+    max-height: 150px;
+    object-fit: contain;
+}
 

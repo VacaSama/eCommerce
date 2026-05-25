@@ -8,10 +8,10 @@ namespace eCommerce.Controllers;
 
 public class CartController : Controller
 {
-    private readonly eCommerceDatabaseContext _context;
+    private readonly eCommerceDbContext _context;
 
     //// constructor 
-    public CartController(eCommerceDatabaseContext context)
+    public CartController(eCommerceDbContext context)
     {
         _context = context;
     }
@@ -105,7 +105,7 @@ public class CartController : Controller
 
         if (quantity <= 0)
         {
-            Cart.Remove(item); // ✅ Remove if quantity is zero
+            Cart.Remove(item);
         }
         else
         {
@@ -115,5 +115,14 @@ public class CartController : Controller
         return RedirectToAction("Index");
     }
 
+    [HttpPost]
+    public IActionResult RemoveItem(int productId)
+    {
+        var item = Cart.SingleOrDefault(ci => ci.ProductId == productId);
+        if (item == null) return NotFound();
 
+        Cart.Remove(item);
+
+        return RedirectToAction("Index");
+    }
 }

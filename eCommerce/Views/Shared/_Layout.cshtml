@@ -13,7 +13,7 @@
 </head>
 <body>
     <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white mb-3">
             <div class="container-fluid">
                 <img src="~/images/MilkmanCow.png" class="logo" alt="logo" />
                 <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">Milkman Farms</a>
@@ -34,10 +34,7 @@
                         </li>
 
                         <li class="nav-item" style="margin-left:auto">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Customer" asp-action="Register">Register</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Customer" asp-action="Login">Login</a>
+                            <a class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Login">Login</a>
                         </li>
 
                         <li class="nav-item align-content-sm-end">

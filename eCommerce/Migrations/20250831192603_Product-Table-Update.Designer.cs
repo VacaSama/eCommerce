@@ -11,7 +11,7 @@ using eCommerce.Data;
 
 namespace eCommerce.Migrations
 {
-    [DbContext(typeof(eCommerceDatabaseContext))]
+    [DbContext(typeof(eCommerceDbContext))]
     [Migration("20250831192603_Product-Table-Update")]
     partial class ProductTableUpdate
     {
